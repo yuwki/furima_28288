@@ -10,32 +10,35 @@
 | last_name         | string | null: false               |
 | first_name_kana   | string | null: false               |
 | last_name_kana    | string | null: false               |
-| birth_date_year   | string | null: false               |
-| birth_date_month  | string | null: false               |
-| birth_date_day    | string | null: false               |
+| birth_date        | date   | null: false               |
 ### Association
 - has_many :items
 - has_many :comments
 - has_many :orders
 
 ## items テーブル
-| Column            | Type   | Options                  |
-| ----------------  | ------ | ------------------------ |
-| items_name        | string | null: false              |
-| items_text        | string | null: false              |
-| status            | string | null: false              |
-| delivery_fee      | string | null: false              |
-| shipping_area     | string | null: false              |
-| sshipping_days    | string | null: false              |
-| price             | string | null: false              |
-| user_id           | reference | null: false, FK:true  |
+| Column            | Type      | Options                   |
+| ----------------  | --------- | ------------------------- |
+| name              | string    | null: false               |
+| text              | string    | null: false               |
+| category_id       | integer   | null: false               |
+| status_id         | integer   | null: false               |
+| delivery_fee_id   | integer   | null: false               |
+| shipping_area_id  | integer   | null: false               |
+| shipping_days_id  | integer   | null: false               |
+| price             | string    | null: false               |
+| user              | reference | null: false, FK:true      |
 ### Association
 - belongs_to :user
-- belongs_to :order
-- belongs_to :adress
+- has_one :order
+- has_one :adress
 - has_many :comments
 - has_one_attached :image
 - belongs_to_active_hash :categories
+- belongs_to_active_hash :statuses
+- belongs_to_active_hash :delivery_fees
+- belongs_to_active_hash :shipping_areas
+- belongs_to_active_hash :shipping_days
 
 ## comments テーブル
 | Column            | Type      | Options                  |
@@ -50,9 +53,8 @@
 ## orders テーブル
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
-| price             | integer   | null: false              |
-| user_id           | reference | null: false, FK:true     |
-| item_id           | reference | null: false, FK:true     |
+| user              | reference | null: false, FK:true     |
+| item              | reference | null: false, FK:true     |
 ### Association
 - belongs_to :user
 - belongs_to :item
@@ -65,12 +67,36 @@
 | city              | string    | null: false              |
 | house_number      | string    | null: false              |
 | building_name     | string    |                          |
-| phone_number      | integer   | null: false, unique: key |
+| phone_number      | string   | null: false, unique: key |
 ### Association
 - belongs_to :item
 
 ## categories テーブル
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
-| genre             | integer   | null: false              |
+| category          | integer   | null: false              |
+### Association
+
+## statuses テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| status            | integer   | null: false              |
+### Association
+
+## delibery_fees テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| delivery_fee      | integer   | null: false              |
+### Association
+
+## shipping_areas テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| shipping_area     | integer   | null: false              |
+### Association
+
+## shipping_days テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| shipping_days     | integer   | null: false              |
 ### Association
