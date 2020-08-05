@@ -1,24 +1,102 @@
-# README
+# FURIMAテーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
+| Column            | Type   | Options                   |
+| ----------------  | ------ | ------------------------- |
+| nickname          | string | null: false               |
+| mail              | string | null: false, unique: true |
+| password          | string | null: false               |
+| first_name        | string | null: false               |
+| last_name         | string | null: false               |
+| first_name_kana   | string | null: false               |
+| last_name_kana    | string | null: false               |
+| birth_date        | date   | null: false               |
+### Association
+- has_many :items
+- has_many :comments
+- has_many :orders
 
-Things you may want to cover:
+## items テーブル
+| Column            | Type      | Options                   |
+| ----------------  | --------- | ------------------------- |
+| name              | string    | null: false               |
+| text              | string    | null: false               |
+| category_id       | integer   | null: false               |
+| status_id         | integer   | null: false               |
+| delivery_fee_id   | integer   | null: false               |
+| shipping_area_id  | integer   | null: false               |
+| shipping_days_id  | integer   | null: false               |
+| price             | string    | null: false               |
+| user              | reference | null: false, FK:true      |
+### Association
+- belongs_to :user
+- has_one :order
+- has_one :adress
+- has_many :comments
+- has_one_attached :image
+- belongs_to_active_hash :categories
+- belongs_to_active_hash :statuses
+- belongs_to_active_hash :delivery_fees
+- belongs_to_active_hash :shipping_areas
+- belongs_to_active_hash :shipping_days
 
-* Ruby version
+## comments テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| text              | string    | null: false              |
+| user_id           | reference | null: false, FK:true     |
+| item_id           | reference | null: false, FK:true     |
+### Association
+- belongs_to :user
+- belongs_to :item
 
-* System dependencies
+## orders テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| user              | reference | null: false, FK:true     |
+| item              | reference | null: false, FK:true     |
+### Association
+- belongs_to :user
+- belongs_to :item
 
-* Configuration
+## adresses テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| post_number       | integer   | null: false              |
+| preffecture       | string    | null: false              |
+| city              | string    | null: false              |
+| house_number      | string    | null: false              |
+| building_name     | string    |                          |
+| phone_number      | string   | null: false, unique: key |
+### Association
+- belongs_to :item
 
-* Database creation
+## categories テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| category          | integer   | null: false              |
+### Association
 
-* Database initialization
+## statuses テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| status            | integer   | null: false              |
+### Association
 
-* How to run the test suite
+## delibery_fees テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| delivery_fee      | integer   | null: false              |
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+## shipping_areas テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| shipping_area     | integer   | null: false              |
+### Association
 
-* Deployment instructions
-
-* ...
+## shipping_days テーブル
+| Column            | Type      | Options                  |
+| ----------------  | --------- | ------------------------ |
+| shipping_days     | integer   | null: false              |
+### Association
