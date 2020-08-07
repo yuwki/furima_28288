@@ -4,7 +4,7 @@
 | Column            | Type   | Options                   |
 | ----------------  | ------ | ------------------------- |
 | nickname          | string | null: false               |
-| mail              | string | null: false, unique: true |
+| email             | string | null: false, unique: true |
 | password          | string | null: false               |
 | first_name        | string | null: false               |
 | last_name         | string | null: false               |
@@ -67,35 +67,35 @@
 | city              | string    | null: false              |
 | house_number      | string    | null: false              |
 | building_name     | string    |                          |
-| phone_number      | string   | null: false, unique: key |
+| phone_number      | string    | null: false, unique: key |
 ### Association
 - belongs_to :item
 
-## categories テーブル
+## categories (Active Hash)
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
 | category          | integer   | null: false              |
 ### Association
 
-## statuses テーブル
+## statuses (Active Hash)
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
 | status            | integer   | null: false              |
 ### Association
 
-## delibery_fees テーブル
+## delibery_fees (Active Hash)
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
 | delivery_fee      | integer   | null: false              |
 ### Association
 
-## shipping_areas テーブル
+## shipping_areas (Active Hash)
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
 | shipping_area     | integer   | null: false              |
 ### Association
 
-## shipping_days テーブル
+## shipping_days (Active Hash)
 | Column            | Type      | Options                  |
 | ----------------  | --------- | ------------------------ |
 | shipping_days     | integer   | null: false              |
