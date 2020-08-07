@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :items
   
-  validates :nickname, presence: true
+  with_options presence: true do
+    validates :nickname
+    validates :birth_date
+  end
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, uniqueness: { case_sensitive: true }, format: { with: VALID_EMAIL_REGEX }
   VALID_PASSWORD_REGEX =/\A(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)[A-Za-z\d]{6,}\z/
@@ -20,6 +23,5 @@ class User < ApplicationRecord
     validates :first_name_kana
     validates :last_name_kana
   end
-  validates :birth_date, presence: true
 end
 
