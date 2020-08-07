@@ -11,9 +11,14 @@ describe User do
       end
       it "emailに＠を含めば登録できる" do
         @user.email = "abc@efg.com"
-        binding.pry
         expect(@user).to be_valid
       end
+      it "passwordが6文字以上であれば登録できること" do
+        @user.password = "Abc123"
+        @user.password_confirmation = "Abc123"
+        @user.valid?
+        expect(@user).to be_valid
+       end
       it "passwordが英数字混合であれば登録できる" do
         @user.password = "000Abc"
         @user.password_confirmation = "000Abc"
