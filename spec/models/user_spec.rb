@@ -9,7 +9,7 @@ describe User do
       it "nicknameとemail、passwordとpassword_confirmation,first_nameとlast_name,first_name_kanaとlast_name_kana,birth_dateが存在すれば登録できる" do
         expect(@user).to be_valid
       end
-      it "emailに＠を含めば登録できる" do
+      it "emailに@を含めば登録できる" do
         @user.email = "abc@efg.com"
         expect(@user).to be_valid
       end
