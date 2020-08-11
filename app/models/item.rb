@@ -15,6 +15,7 @@ class Item < ApplicationRecord
     validates :price
     validates :image
   end
+  validates_inclusion_of :price, in: 300..9999999
 
   with_options presence: true, numericality: { other_than: 1 }  do
     validates :category_id
