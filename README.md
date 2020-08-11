@@ -16,6 +16,98 @@
 - has_many :comments
 - has_many :orders
 
+
+======================================
+
+ class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :user
+  has_one_attached :image
+
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :delivery_fee
+  belongs_to_active_hash :shipping_area
+  belongs_to_active_hash :shipping_day
+
+  validates :title, :text, :genre, presence: true
+
+
+  validates :genre_id, numericality: { other_than: 1 } 
+  belongs_to :user
+  has_one_attached :image
+
+  with_options presence: true do
+    validates :name
+    validates :text
+    validates :price
+  end
+
+  with_options presence: true, numericality: { other_than: 1 }  do
+    validates :category
+    validates :status
+    validates :delivery_fee
+    validates :shipping_area
+    validates :shipping_day
+  end
+
+  # extend ActiveHash::Associations::ActiveRecordExtensions
+  # belongs_to_active_hash :category
+  # belongs_to_active_hash :status
+  # belongs_to_active_hash :delivery_fee
+  # belongs_to_active_hash :shipping_area
+  # belongs_to_active_hash :shipping_day
+
+  # validates :title, :text, :genre, presence: true
+
+
+  # validates :genre_id, numericality: { other_than: 1 } 
+end
+================================================================
+
+
+# This migration comes from active_storage (originally 20170806125915)
+class CreateActiveStorageTables < ActiveRecord::Migration[5.2]
+  def change
+    create_table :active_storage_blobs do |t|
+      t.string   :key,        null: false
+      t.string   :filename,   null: false
+      t.string   :content_type
+      t.text     :metadata
+      t.bigint   :byte_size,  null: false
+      t.string   :checksum,   null: false
+      t.datetime :created_at, null: false
+
+      t.index [ :key ], unique: true
+    end
+
+    create_table :active_storage_attachments do |t|
+      t.string     :name,     null: false
+      t.references :record,   null: false, polymorphic: true, index: false
+      t.references :blob,     null: false
+
+      t.datetime :created_at, null: false
+
+      t.index [ :record_type, :record_id, :name, :blob_id ], name: "index_active_storage_attachments_uniqueness", unique: true
+      t.foreign_key :active_storage_blobs, column: :blob_id
+    end
+  end
+end
+=====================================================
+
+
+====================================================
+      t.string  :name,                  null: false, default: ""
+      t.string  :text,                  null: false, default: ""
+      t.integer :price,                 null: false, default: ""
+      t.integer :category_id,           null: false
+      t.integer :status_id,             null:false
+      t.integer :delivery_fee_id,       null:false
+      t.integer :shipping_area_id,      null:false
+      t.integer :shipping_day_id,       null:false
+      # t.references :user,               foreign_key: true
+=========================================================================
+
 ## items テーブル
 | Column            | Type      | Options                   |
 | ----------------  | --------- | ------------------------- |
@@ -25,8 +117,8 @@
 | status_id         | integer   | null: false               |
 | delivery_fee_id   | integer   | null: false               |
 | shipping_area_id  | integer   | null: false               |
-| shipping_days_id  | integer   | null: false               |
-| price             | string    | null: false               |
+| shipping_day_id   | integer   | null: false               |
+| price             | integer   | null: false               |
 | user              | reference | null: false, FK:true      |
 ### Association
 - belongs_to :user
