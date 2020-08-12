@@ -1,0 +1,5 @@
+eval "$(rbenv init -)"
+eval "$(rbenv init -)"
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export BASIC_AUTH_USER='furima'
+export BASIC_AUTH_PASSWORD='1234'
