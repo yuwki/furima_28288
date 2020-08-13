@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const profit = document.getElementById("profit")
 
   itemPrice.addEventListener('input', () => {
-    addTax.innerHTML = (itemPrice.value * 0.1);
-    profit.innerHTML = (itemPrice.value * 0.9);
+    addTax.textContent = (itemPrice.value * 0.1);
+    profit.textContent = (itemPrice.value * 0.9);
   })
 })
