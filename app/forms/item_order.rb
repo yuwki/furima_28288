@@ -8,7 +8,7 @@ class ItemOrder
     validates :prefecture,  numericality: { other_than: 1, message: "is invalid. Input select prefectures." }
     validates :city, format: {with:/\A[ぁ-んァ-ン一-龥]/, message: "is invalid. Input your city infomations."}
     validates :house_number
-    validates :phone_number, format: {with: /\A[a-zA-Z0-9]+\z/, messagge: "is invalid. Input Half-width alphanumeric characters."}
+    validates :phone_number, format: {with: /\A[a-zA-Z0-9]+\z/, message: "is invalid. Remove hyphen(-).(maxlength 11)"}
     validates :token
   end
 

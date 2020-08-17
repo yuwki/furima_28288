@@ -58,6 +58,7 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 ## addresses テーブル
 | Column            | Type      | Options                  |
@@ -67,9 +68,10 @@
 | city              | string    | null: false              |
 | house_number      | string    | null: false              |
 | building_name     | string    |                          |
-| phone_number      | string    | null: false, unique: key |
+| phone_number      | string    | null: false              |
+| order_id          | string    | null: false, unique: key |
 ### Association
-- belongs_to :item
+- belongs_to :order
 
 ## categories (Active Hash)
 | Column            | Type      | Options                  |
