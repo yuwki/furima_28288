@@ -20,10 +20,12 @@ app/assets/stylesheets/items/new.css %>
         <span class="indispensable">必須</span>
       </div>
       <div class="click-upload">
+      <%= image_tag(@item.image , class:"item-image")%>
         <p>
           クリックしてファイルをアップロード
         </p>
         <%= f.file_field :image, id:"item-image" %>
+        <div id="image-list"></div>
       </div>
     </div>
     <%# /出品画像 %>
