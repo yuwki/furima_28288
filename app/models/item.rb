@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_one :order
 
   belongs_to_active_hash :category
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :name
     validates :text
     validates :price
-    validates :image
+    validates :images
   end
   validates_inclusion_of :price, in: 300..9999999
 
