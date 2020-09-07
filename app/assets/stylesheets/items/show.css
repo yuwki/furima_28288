@@ -204,3 +204,12 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.comment {
+  text-align: left;
+  padding: 5px;
+}
+
+.comment-title {
+  font-size: 20px;
+}
