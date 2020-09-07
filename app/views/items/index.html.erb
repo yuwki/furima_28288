@@ -132,11 +132,10 @@
           <div class='item-img-content'>
             <%= image_tag item.images[0], class: "item-img" %>
             <div class='sold-out'>
-            <% if item.order.present? %>
-              <span>Sold Out!!</span>
-            <% end %>
+             <% if item.order.present? %>
+                <span>Sold Out!!</span>
+              <% end %>
             </div>
-
           </div>
           <div class='item-info'>
             <h3 class='item-name'>
